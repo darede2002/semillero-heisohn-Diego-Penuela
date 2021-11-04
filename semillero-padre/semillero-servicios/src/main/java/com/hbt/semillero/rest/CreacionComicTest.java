@@ -13,6 +13,8 @@ import com.hbt.semillero.entidad.Comic;
  * @author Diego
  * @version 
  */
+
+/**
 public class CreacionComicTest {
 	
 	
@@ -37,7 +39,7 @@ public class CreacionComicTest {
 	
 
 }
-/**
+
  * pendientes código
  * construir array de prueba
  * 3.1 Antes de ejecutar las pruebas unitarias, se deben crear 10 comics, haciendo uso de set o haciendo uso de constructores. Esos 10 comics se adicionaran a una lista y algunos deberán contener el estado activo y otros el estado inactivo (la cantidad que uds quieran).
@@ -49,4 +51,3 @@ public class CreacionComicTest {
 
  * 
  */
-*/

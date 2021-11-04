@@ -15,7 +15,7 @@
 	<name>Semillero HBT [WEB]</name>
 
 	<properties>
-		<workingDirectory.project>${project.basedir}/src/main/angular</workingDirectory.project>
+	  <workingDirectory.project>${project.basedir}/src/main/angular</workingDirectory.project>
 	</properties>
 
 	<profiles>

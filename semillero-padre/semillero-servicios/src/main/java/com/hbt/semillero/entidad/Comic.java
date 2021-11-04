@@ -70,7 +70,7 @@ public class Comic implements Serializable{
 	private LocalDate fechaVenta;
 	
 	@Column(name = "SCESTADO")
-	private EstadoEnum estado;
+	private EstadoEnum estadoEnum;
 	
 	@Column(name = "SCCANTIDAD")
 	private Integer cantidad;
@@ -265,23 +265,18 @@ public class Comic implements Serializable{
 	 * Metodo encargado de retornar el valor del atributo estado
 	 * @return El estado asociado a la clase
 	 */
-	public EstadoEnum getEstado() {
-		return estado;
+	public EstadoEnum getEstadoEnum() {
+		return estadoEnum;
 	}
 
 	/**
 	 * Metodo encargado de modificar el valor del atributo estado
+	 * @param estadoEnum 
 	 * @param estado El nuevo estado a modificar.
 	 */
-	public void setEstado() {
-		if (this.cantidad>0) {
-			this.estado=EstadoEnum.ACTIVO;
-		} else {
-			this.estado=EstadoEnum.INACTIVO;
-			this.setCantidad(0);
-		}
-			
-		/** this.estado = estado;  pendiente corregir*/
+	public void setEstadoEnum(EstadoEnum estadoEnum) {
+		this.estadoEnum=estadoEnum;
+		
 	}
 
 	/**
@@ -332,10 +327,15 @@ public class Comic implements Serializable{
         sb.append("\nCantidad disponible: ");
         sb.append(cantidad);
         sb.append("\nEstado: ");
-        sb.append(estado);
+        sb.append(estadoEnum);
+        
+        return sb.toString();
 	}
+
+
 	
-	return sb;
+	
+	
 	
 	
 	
