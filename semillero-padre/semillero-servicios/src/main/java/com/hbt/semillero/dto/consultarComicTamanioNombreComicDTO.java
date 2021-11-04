@@ -16,6 +16,28 @@ public class consultarComicTamanioNombreComicDTO extends ResultadoDTO {
 	
 	public consultarComicTamanioNombreComicDTO(Short lengthComic) {
 		this.setTamanio(lengthComic);
+		//todo comparar tabla, campo nombre  con campo lengthComic funcion strlen, 
+		// generar DTOS para tamños menores o iguales vs tamaños mayores
+		//complementar lógica
+		/**
+		 * 
+		 * DTO de salida
+		 *	{
+		 *     "exitoso": true,
+         *     "mensajeEjecucion": "Comics procesados exitosamente",
+         *      "comicsNoSuperanTamanio": [
+         *      "Hulk"
+         *      ],
+         *      "comicsSuperanTamanio": [
+         *       "Spiderman",
+         *       "Dragon ball"
+         *       ]
+         *       }
+
+		 * 
+		 * 
+		
+		 */
 		
 	}
 
