@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.hbt.semillero.dto.ComicDTO;
 import com.hbt.semillero.dto.ConsultaNombrePrecioComicDTO;
+import com.hbt.semillero.dto.consultarComicTamanioNombreComicDTO;
 import com.hbt.semillero.ejb.IGestionarComicLocal;
 
 @Path("/gestionarComic")
