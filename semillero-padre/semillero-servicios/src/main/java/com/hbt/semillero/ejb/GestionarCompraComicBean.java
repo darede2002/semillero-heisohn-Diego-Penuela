@@ -1,7 +1,5 @@
 package com.hbt.semillero.ejb;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -17,16 +15,15 @@ import com.hbt.semillero.dto.ComicDTO;
 import com.hbt.semillero.dto.ConsultaLengthNombreComicDTO;
 import com.hbt.semillero.dto.ConsultaNombrePrecioComicDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
-import com.hbt.semillero.dto.consultarComicTamanioNombreComicDTO;
 import com.hbt.semillero.entidad.Comic;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class GestionarComicBean implements IGestionarComicLocal {
 
+public class GestionarCompraComicBean implements IGestionarComicLocal{
+	
 	@PersistenceContext
 	public EntityManager em;
-	private ComicDTO compraComic = new ComicDTO();
 
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	@Override
@@ -131,64 +128,33 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		return comic;
 	}
 	
-	
-	/**
-	 * 
-	 * 
-	 * @param comic a buscar
-	 * @param cantidad a comprar
-	 * @return comicDTO resultado de la compra exitosa o fallida
-	 */
 	@SuppressWarnings("unchecked")
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public ComicDTO comprarComic(ComicDTO comic, Long cantidad) {
-		
-		compraComic = comic;
-		String estado;
-		//variable de referencia instanciada a objeto local
-		
-		
+	public ConsultaLengthNombreComicDTO consultarComicTamanioNombre(Short lengthCadena) {
+		String consulta = "SELECT c.nombre "
+						+ " FROM Comic c";
+		ConsultaLengthNombreComicDTO consultaLengthNombreComicDTO = new ConsultaLengthNombreComicDTO();
 		try {
-			if((compraComic.getEstadoEnum())=="INACTIVO") {
-				throw new Exception("El comic seleccionado no cuenta con stock en bodega");
+			if(lengthCadena > 200) {
+				throw new Exception("La longitud máxima permitida es de 200 caracteres");
 			}
-			// excepcion cuando no hay comics en bodega
-			try {
-				if(cantidad>compraComic.getCantidad()) {
-					throw new Exception("La cantidad existente del comic es:  "+compraComic.getCantidad()+", y supera la ingresada");
-					//validacion de cantidad disponible vs cantidad solicitada
+			Query consultaQuery = em.createQuery(consulta);
+			List<String> nombresComics = consultaQuery.getResultList();
+			for (String nombre : nombresComics) {
+				if(nombre.length() >= lengthCadena) {
+					consultaLengthNombreComicDTO.getComicsSuperanTamanio().add(nombre);
+				} else {
+					consultaLengthNombreComicDTO.getComicsNoSuperanTamanio().add(nombre);
 				}
-				compraComic.setCantidad((compraComic.getCantidad()-cantidad));
-				Long cantidadComics=compraComic.getCantidad();
-				if(cantidadComics==0L) {
-					compraComic.setEstadoEnum("INACTIVO");
-					//@Diego Peñuela, sigo sin entender como enviar un enum como parametro a una funcion
-					LocalDate fecha = LocalDate.now(); 
-					compraComic.setFechaVenta(fecha);
-					//solo se usa cuando se vende la totalidad de los comics
-					
-					}
 			}
-				catch (Exception e) {
-					compraComic.setExitoso(false);
-					compraComic.setMensajeEjecucion("Se ha presentado un error tecnico correspondiente a la cantidad de comics disponibles");
-					//error cuando se intenta comprar mas comics de los que hay en bodega
-					}
-				
-				}
-				catch (Exception e) {
-					compraComic.setExitoso(false);
-					compraComic.setMensajeEjecucion("Se ha presentado un error tecnico correspondiente a la disponibilidad de los comics");
-					//error cuando se intenta comprar comics con estado inactivo
-					
-				}
-			compraComic.setMensajeEjecucion("La compra del comic nombreComic fue exitosa");
-			return compraComic;
-			
-					
+			consultaLengthNombreComicDTO.setExitoso(true);
+			consultaLengthNombreComicDTO.setMensajeEjecucion("Comics procesados exitosamente");	
+		} catch (Exception e) {
+			consultaLengthNombreComicDTO.setExitoso(false);
+			consultaLengthNombreComicDTO.setMensajeEjecucion("Se ha presentado un error tecnico al consultar los comics");
+		}
+
+		return consultaLengthNombreComicDTO;
 	}
+
 }
-
-
-	
-	
