@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
- * @description Componente menu, el cual contiene la logica para direccionar a los modulos
- * desarrollados
- * 
- * @author Diego Fernando Alvarez Silva <dalvarez@heinsohn.com.co>
+ * @description Componente encargado de gestionar los enrutamientos del menu
+ * @author Diego Alvarez <dalvarez@heinsohn.com>
+ * @see CU1098 Gestionar comic
+ * @see Semillero 2021
  */
 @Component({
   selector: 'home-page',
@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   /**
-   * Constructor de la clase
-   * @param router permite direccionar a otros componentes
+   * Constructor del componente MenuComponent
+   * @param router es el encargado de manejar el enrutamiento
    */
   constructor(private router: Router) {
 

@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.hbt.semillero.dto.ComicDTO;
+import com.hbt.semillero.dto.ConsultaLengthNombreComicDTO;
 import com.hbt.semillero.dto.ConsultaNombrePrecioComicDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
 import com.hbt.semillero.entidad.Comic;
@@ -124,5 +125,34 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		comic.setEstadoEnum(comicDTO.getEstadoEnum());
 		comic.setCantidad(comicDTO.getCantidad());
 		return comic;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public ConsultaLengthNombreComicDTO consultarComicTamanioNombre(Short lengthCadena) {
+		String consulta = "SELECT c.nombre "
+						+ " FROM Comic c";
+		ConsultaLengthNombreComicDTO consultaLengthNombreComicDTO = new ConsultaLengthNombreComicDTO();
+		try {
+			if(lengthCadena > 200) {
+				throw new Exception("La longitud máxima permitida es de 200 caracteres");
+			}
+			Query consultaQuery = em.createQuery(consulta);
+			List<String> nombresComics = consultaQuery.getResultList();
+			for (String nombre : nombresComics) {
+				if(nombre.length() >= lengthCadena) {
+					consultaLengthNombreComicDTO.getComicsSuperanTamanio().add(nombre);
+				} else {
+					consultaLengthNombreComicDTO.getComicsNoSuperanTamanio().add(nombre);
+				}
+			}
+			consultaLengthNombreComicDTO.setExitoso(true);
+			consultaLengthNombreComicDTO.setMensajeEjecucion("Comics procesados exitosamente");	
+		} catch (Exception e) {
+			consultaLengthNombreComicDTO.setExitoso(false);
+			consultaLengthNombreComicDTO.setMensajeEjecucion("Se ha presentado un error tecnico al consultar los comics");
+		}
+
+		return consultaLengthNombreComicDTO;
 	}
 }

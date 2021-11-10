@@ -101,14 +101,14 @@ public class SemilleroJPQLRest {
 			comicSuperman.setColeccion("MARVEL");
 			comicSuperman.setNumeroPaginas(100);
 			comicSuperman.setPrecio(new BigDecimal(300));
-			comicSuperman.setCantidad(3);
+			comicSuperman.setCantidad(3L);
 			
 			em.persist(comicSuperman);
 			
 			comicSuperman = this.consultarComicPorNombre("Superman");
 			
 			comicSuperman.setPrecio(new BigDecimal(600));
-			comicSuperman.setCantidad(9);
+			comicSuperman.setCantidad(9L);
 			em.merge(comicSuperman);
 			
 			// Actualizar y eliminar mediante un identificador
