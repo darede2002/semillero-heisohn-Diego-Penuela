@@ -9,6 +9,9 @@
             <div class="col-6">
                 <label for="nombreComic">Nombre:</label>
                 <input type="text" class="form-control" id="nombreComic" maxlength="50" value=" " name="nombre" [(ngModel)]="comicDTO.nombre" required >
+                <div class="text-danger">
+                    <span>el nombre del comic es requerido</span>
+                </div>
             </div>
             
         </div>
