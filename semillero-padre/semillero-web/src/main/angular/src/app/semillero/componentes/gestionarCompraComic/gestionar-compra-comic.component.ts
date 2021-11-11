@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ComicDTO } from 'src/app/semillero/dto/comic-dto';
 
 /**
- * @description Componente encargado de gestionar la logica para crear consultar actualizar y eliminar
- * un comic
- * @author dalvarez - editado por Diego Peñuela
+ * @description Componente encargado de gestionar la logica para gestionar compras de comics
+ * @author diego Peñuela
  * @see SEMILLERO 2021
  */
 @Component({
-  selector: 'gestionar-comic',
-  templateUrl: './gestionar-comic.component.html'
+  selector: 'gestionar-compra-comic',
+  templateUrl: './gestionar-compra-comic.component.html'
 })
 export class GestionarComicComponent implements OnInit {
 
@@ -63,7 +62,7 @@ export class GestionarComicComponent implements OnInit {
   }
 
   public gestionarCompraComic(comicDTO : ComicDTO) : void {
-
+    
   }
 
   public cerrar() : void {

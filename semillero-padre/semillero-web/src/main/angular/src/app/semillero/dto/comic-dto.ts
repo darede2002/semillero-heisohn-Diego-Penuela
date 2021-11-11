@@ -1,42 +1,28 @@
 export class ComicDTO {
     
-    private _id: number;
-    public get id(): number {
-        return this._id;
-    }
-    public set id(value: number) {
-        this._id = value;
-    }
+    public id : number;
 
-    private _nombre: string;
-    public get nombre(): string {
-        return this._nombre;
-    }
-    public set nombre(value: string) {
-        this._nombre = value;
-    }
+    public nombre : string;
+
+    public editorial : string;
     
-    private _tematicaEnum: string;
-    public get tematicaEnum(): string {
-        return this._tematicaEnum;
-    }
-    public set tematicaEnum(value: string) {
-        this._tematicaEnum = value;
-    }
+    public tematicaEnum : string;
 
-    private _precio: number;
-    public get precio(): number {
-        return this._precio;
-    }
-    public set precio(value: number) {
-        this._precio = value;
-    }
+    public coleccion : string;
+
+    public numeroPaginas : number;
+
+    public precio : number;
+
+    public autores : string;
+
+    public color : boolean;
+
+    public cantidad : number;
+
+    public estadoEnum : string;
 
     constructor(){
-
-    }
-
-    public toString() : string { 
-        return "";
+        
     }
 }
