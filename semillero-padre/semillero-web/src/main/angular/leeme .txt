@@ -1,0 +1,2 @@
+el comando para lanzar es:
+ng serve

@@ -1,0 +1,128 @@
+<div class="container">
+    <pre>{{ comicDTO | json }}</pre>
+    <pre>{{ nombre | json }}</pre>
+    <form>
+        <h1>Gestionar Comic</h1>
+        <hr>        
+        
+        <div class="row">
+            <div class="col-6">
+                <label for="nombreComic">Nombre:</label>
+                <input type="text" class="form-control" id="nombreComic" maxlength="50" value="sdfsdf" name="nombre" [(ngModel)]="comicDTO.nombre">
+            </div>
+            <div class="col-6">
+                <label for="editorialComic">Editorial:</label>
+                <input type="text" class="form-control" id="editorialComic" name="editorial" [(ngModel)]="comicDTO.editorial">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="tematica">Tematica:</label>
+                    <select class="form-control" id="tematica" name="tematica" [(ngModel)]="comicDTO.tematicaEnum">
+                        <option value="AVENTURAS">AVENTURAS</option>
+                        <option value="BELICO">BELICO</option>
+                        <option value="DEPORTIVO">DEPORTIVO</option>
+                        <option value="FANTASTICO">FANTASTICO</option>
+                        <option value="CIENCIA_FICCION">CIENCIA FICCION</option>
+                        <option value="HISTORICO">HISTORICO</option>
+                        <option value="HORROR">HORROR</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <label for="coleccion">Coleccion:</label>
+                <input type="text" class="form-control" id="coleccion" name="coleccion" [(ngModel)]="comicDTO.coleccion">
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="col-6">
+                <label for="numeroPaginas">Número paginas:</label>
+                <input type="number" class="form-control" id="numeroPaginas" name="numPaginas" [(ngModel)]="comicDTO.numeroPaginas">
+            </div>
+
+            <div class="col-6">
+                <label for="precio">Precio:</label>
+                <input type="number" class="form-control" id="precio" step=".01" name="precio" [(ngModel)]="comicDTO.precio">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <label for="autores">Autores:</label>
+                <textarea class="form-control" id="autores" rows="3" name="autores" [(ngModel)]="comicDTO.autores"></textarea>
+            </div>
+
+            <div class="col-6">
+                <label for="color">A color:</label>
+                <br>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline1" name="color" class="custom-control-input"
+                        value="true" [(ngModel)]="comicDTO.color">
+                    <label class="custom-control-label" for="customRadioInline1">Si</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline2"  name="color" class="custom-control-input"
+                        value="false" [(ngModel)]="comicDTO.color">
+                    <label class="custom-control-label" for="customRadioInline2">No</label>
+                </div>
+            </div>
+        </div>
+        <br>
+
+
+        <div class="row">
+            <div class="col-6">
+                <span></span>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="crearComic()">Crear/Editar</button>
+            </div>
+        </div>
+
+
+      <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tematica</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">A color</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--date:"MM/dd/yy"
+                        | uppercase-->
+                        <tr *ngFor="let comic of listaComics;let i=index;">
+                            <th scope="row">{{comic.id}}</th>
+                            <td>{{comic.nombre | uppercase }}</td>
+                            <td>{{comic.tematicaEnum | lowercase }}</td>
+                            <td>{{comic.precio | number: '.2'}}</td>
+                            <td>{{comic.color ? 'Si' : 'No' }}</td>
+                            <td>
+                                <i class="fas fa-search 2x ml-1" (click)="imprimirInfoComic(i)" title="Consultar"></i>
+                                <i class="fas fa-pencil-alt 2x ml-1"  title="Editar"></i>
+                                <i class="far fa-times-circle 2x ml-1" title="Eliminar"></i>
+                                <i class="fas fa-dollar-sign 2x ml-1" (click)="comprarComic(j)" title="Comprar"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    <div *ngIf="mostrarItem" class="alert alert-info" role="alert">
+        ITEM SELECCIONADO: <pre>{{ comicDTOInfo | json }}</pre> 
+        <button type="button" class="btn btn-primary" (click)="cerrar()">Cerrar</button>      
+    </div>
+
+    </form>
+</div>

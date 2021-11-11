@@ -1,0 +1,50 @@
+<div class="container">
+    <pre>{{ comicDTO | json }}</pre>
+    <pre>{{ nombre | json }}</pre>
+    <form>
+        <h1>Gestionar Compra Comic</h1>
+        <hr>        
+        
+        <div class="row">
+            <div class="col-6">
+                <label for="nombreComic">Nombre:</label>
+                <input type="text" class="form-control" id="nombreComic" maxlength="50" value=" " name="nombre" [(ngModel)]="comicDTO.nombre" required >
+                <div class="text-danger">
+                    <span>el nombre del comic es requerido</span>
+                </div>
+            </div>
+            
+        </div>
+
+       
+         <div class="row">
+            <div class="col-6">
+                <label for="cantidad">Cantidad a comprar</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="comicDTO.cantidad" min="1" required >
+            </div>
+       </div>
+
+        
+        <br>
+
+
+        <div class="row">
+            <div class="col-6">
+                <span></span>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="comprarComic()">Comprar comics</button>
+            </div>
+        </div>
+
+
+      
+
+
+    <div *ngIf="mostrarItem" class="alert alert-info" role="alert">
+        ITEM SELECCIONADO: <pre>{{ comicDTOInfo | json }}</pre> 
+        <button type="button" class="btn btn-primary" (click)="cerrar()">Cerrar</button>      
+    </div>
+
+    </form>
+</div>

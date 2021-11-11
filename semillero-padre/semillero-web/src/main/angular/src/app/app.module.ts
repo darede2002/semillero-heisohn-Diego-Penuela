@@ -9,11 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './semillero/componentes/menu/menu-component';
-import { GestionarComicComponent } from './semillero/componentes/gestionarComic/gestionar-comic';
+import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-component'
+
+//import { GestionarComicComponent } from './semillero/componentes/gestionarComic/gestionar-comic';
+
 
 // DTOs
-export { ComicDTO } from './semillero/dto/comic.dto';
-export { ResultadoDTO } from './semillero/dto/resultado.dto';
+//export { ComicDTO } from './semillero/dto/comic.dto';
+//export { ResultadoDTO } from './semillero/dto/resultado.dto';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,6 @@ export { ResultadoDTO } from './semillero/dto/resultado.dto';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
 }
